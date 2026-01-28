@@ -1,0 +1,82 @@
+name: Cypress E2E and Deploy
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Ambiente (dev/staging/prod)
+        type: choice
+        default: staging
+        options: [dev, staging, prod]
+
+  schedule: 
+    - cron: '0 11 * * *'  # 08:00 AM Brasil
+    - cron: '0 15 * * *'  # 12:00 PM Brasil (meio-dia)
+    - cron: '0 19 * * *'  # 04:00 PM Brasil
+    - cron: '0 23 * * *'  # 08:00 PM Brasil
+env:
+  DASHBOARD_API_URL: ${{ secrets.DASHBOARD_URL }}
+  ENVIRONMENT:       ${{ github.event.inputs.environment || 'Produção' }}
+
+jobs:
+  e2e:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        continue-on-error: true
+        with:
+          browser: chrome
+        env:
+          GITHUB_REF_NAME:   ${{ github.ref_name }}
+          GITHUB_SHA:        ${{ github.sha }}
+          GITHUB_ACTOR:      ${{ github.actor }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID:     ${{ github.run_id }}
+          DASHBOARD_API_URL: ${{ env.DASHBOARD_API_URL }}
+          ENVIRONMENT:       ${{ env.ENVIRONMENT }}
+          CYPRESS_baseUrl:   https://dash-report-cy.netlify.app/
+          CYPRESS_DASHBOARD_API_URL: ${{ env.DASHBOARD_API_URL }}
+
+  deploy:
+    needs: e2e
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Netlify CLI
+        run: npm install -g netlify-cli
+
+      - name: Build site
+        run: echo "No build needed - serving static files"
+
+      - name: Deploy to Netlify
+        run: netlify deploy --dir=. --prod
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
