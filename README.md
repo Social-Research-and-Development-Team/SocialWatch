@@ -218,13 +218,3 @@ Desenvolvido com ❤️ pela equipe **Social Digital Commerce**
 - **Website:** [socialsa.com](https://www.socialsa.com)
 - **GitHub:** [Social-Research-and-Development-Team](https://github.com/Social-Research-and-Development-Team)
 
----
-
-<div align="center">
-
-**⭐ Se este projeto foi útil, considere dar uma estrela!**
-
-Made with ❤️ by Social Digital Commerce
-
-</div>
-
