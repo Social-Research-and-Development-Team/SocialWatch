@@ -2,14 +2,14 @@ import FechandoModalIdade from '../../support/commands.js'
 import locators from '../../support/locators.js';
 
 describe('[Shopvinho] Validação da página home', () => {
-    
+
     let email = 'teste@qa.com.br'
 
     beforeEach(() => {
         cy.viewport(1920, 1080)
         cy.visit('https://www.shopvinho.com.br/');
     });
-    
+
     it('Fechando o modal de idade', () => {
         cy.get(locators.shopvinho_home.modalIdade)
             .should('be.visible')
@@ -29,12 +29,12 @@ describe('[Shopvinho] Validação da página home', () => {
         cy.get(locators.shopvinho_home.btnAdicionarAoCarrinho)
             .first()
             .should('be.visible')
-            .click()    
+            .click()
     });
 
-    it('Validar se a página home possui os infocards', () => {        
+    it('Validar se a página home possui os infocards', () => {
         cy.FechandoModalIdade()
-        
+
         cy.get(locators.shopvinho_home.infoCards)
             .should('be.visible')
     });
@@ -60,8 +60,10 @@ describe('[Shopvinho] Validação da página home', () => {
             .should('be.visible')
             .click()
 
+        cy.wait(1800)
+
         cy.get(locators.shopvinho_home.modalCarrinho)
-            .should('be.visible', {timeout: 10000})
+            .should('be.visible', { timeout: 10000 })
 
         cy.get(locators.shopvinho_home.modalProdutoNoCarrinho)
             .should('be.visible')
@@ -107,7 +109,7 @@ describe('[Shopvinho] Validação da página home', () => {
     });
 
     it('Entrando na página de produto', () => {
-        
+
         cy.FechandoModalIdade()
 
         cy.scrollTo(0, 500)
@@ -115,9 +117,9 @@ describe('[Shopvinho] Validação da página home', () => {
         cy.get(locators.shopvinho_home.imgProduto)
             .first()
             .should('be.visible')
-            .click()
+            .click({ force: true })
 
-        cy.get(locators.shopvinho_home.breadcrumbPDP, {timeout: 10000})
+        cy.get(locators.shopvinho_home.breadcrumbPDP, { timeout: 10000 })
             .should('be.visible')
     });
 

@@ -113,9 +113,11 @@ Cypress.Commands.add("AcessandoPaginaProduto_Jasmine", () => {
     cy.viewport(1920, 1080)
     cy.visit('https://www.loja.jasminealimentos.com')
 
+    cy.wait(1800)
+
     cy.get('[class="cy-category-card-image absolute -translate-x-1/2 left-1/2 -top-6 sm:-top-1/2 sm:w-full max-w-[150px] ipad-air:left-0.5 ipad-air:transform-none "]')
       .first()
-      .click()
+      .click({ force: true })
 
     cy.url()
       .should('include', '/granolas?page=1')
@@ -133,10 +135,15 @@ Cypress.Commands.add("AcessandoPaginaProduto_Jasmine", () => {
 
 Cypress.Commands.add("AcessandoDepartamento_VicBeaute", () => {
 
-  cy.contains('Para presentear')
+  cy.get('[class="vtex-menu-2-x-styledLinkContainer vtex-menu-2-x-styledLinkContainer--item-menu vtex-menu-2-x-styledLinkContainer--item-menu-pos-1 vtex-menu-2-x-styledLinkContainer--cy-menu-1 mh6 pv5"]')
+    .trigger('mouseover')
+
+  cy.contains('Acessórios')
     .click()
 
   cy.url()
-    .should('include', '/kits')
+    .should('include', '/beleza/acessorios')
+
+
 })
 

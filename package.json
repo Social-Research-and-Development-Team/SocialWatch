@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.56.0",
+    "i": "^0.3.7",
     "node-fetch": "^3.3.2"
   }
 }

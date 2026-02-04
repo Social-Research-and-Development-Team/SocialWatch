@@ -12,11 +12,11 @@ describe('[Vic Beaute] Validação de departamento', () => {
     it('Validando uma das categorias da página de categorias.', () => {
 
 
-        cy.contains('Para presentear')
+        cy.contains('Verão Beauté')
             .click()
 
         cy.url()
-            .should('include', '/kits')
+            .should('include', '/verao-beaute')
 
     })
 
@@ -28,7 +28,7 @@ describe('[Vic Beaute] Validação de departamento', () => {
 
         cy.get('[class="vtex-breadcrumb-1-x-arrow vtex-breadcrumb-1-x-arrow--1 ph2 c-muted-2"]')
             .should('be.visible')
-            .should('have.text', 'KITS')
+            .should('have.text', 'Beleza')
     })
 
     it('Validar um filtro do departamento - Multiuso', () => {
@@ -63,7 +63,7 @@ describe('[Vic Beaute] Validação de departamento', () => {
             .click()
 
         cy.url()
-            .should('include', '/kits?order=OrderByReleaseDateDESC')
+            .should('include', '/acessorios?order=OrderByReleaseDateDESC')
     })
 
     it('Clicando no botão de adicionar ao carrinho algum produto', () => {

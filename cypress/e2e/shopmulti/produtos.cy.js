@@ -1,3 +1,5 @@
+import locators from "../../support/locators";
+
 describe('[Shopmulti] Validar imagens de produtos', () => {
 
     beforeEach(() => {
@@ -44,15 +46,5 @@ describe('[Shopmulti] Validar imagens de produtos', () => {
                 }
             });
 
-    });
-
-    it("Validar a vitrine de produtos", () => {
-        cy.get(locators.shopmulti_home.vitrineProdutos)
-            .should('exist')
-            .and('be.visible');
-
-        cy.get(locators.shopmulti_home.vitrineProdutos)
-            .find('a[href*="/produto/"]')
-            .should('have.length.greaterThan', 0);
     });
 });

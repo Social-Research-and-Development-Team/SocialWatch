@@ -138,7 +138,7 @@ const locators = {
         infoCards: '[class="carousel carousel-start gap-4 lg:gap-8 sm:ml-1/25 lg:ml-0 justify-between"]',
         abaCategorias: '[class="flex flex-col w-full items-center"]',
         tiposCategorias: '[class="carousel carousel-center w-full gap-9/2 max-sm:px-4 max-lg:px-6 lg:ml-0 justify-center"]',
-        modalCarrinho: '[class="fixed top-0 w-full right-0 h-full md:w-[475px] flex flex-col bg-white rounded-10 overflow-y-auto"]',
+        modalCarrinho: '[class="fixed top-0 w-full right-0 h-full md:w-[475px] flex flex-col bg-white rounded-10 overflow-y-auto z-50"]',
         modalProdutoNoCarrinho: '[class="flex gap-[10px] py-5 px-0 w-full md:w-[390px] relative border-b-[1px] border-[#D4D4D4]"]',
         newsletter: {
             inputEmail: '[name="email"]',
@@ -168,8 +168,7 @@ const locators = {
     /////////////////
     victorHugo_home: {
         vitrineProdutos: '[class="absolute flex h-full items-center justify-between right-1 left-1 sm:-right-12 sm:-left-12 sm:px-3"]'
-    }
-
+    },
 
 }
 

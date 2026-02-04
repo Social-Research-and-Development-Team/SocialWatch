@@ -4,20 +4,20 @@ import AumentandoQuantidadeProduto_Jasmine from "../../support/commands.js"
 import locators from "../../support/locators";
 
 describe('[Jasmine] Validação da página de produto', () => {
-    
+
     beforeEach(() => {
         cy.AcessandoPaginaProduto_Jasmine()
     })
-    
+
     it('Validar se a página possui bredcrumb', () => {
-        
+
         cy.get(locators.jasmine_pdp.breadcrumbPDP)
             .should('be.visible')
 
     });
 
     it('Adicionando produto no carrinho', () => {
-        
+
         cy.get(locators.jasmine_home.btnAdicionaroCarrinhoPDP)
             .click()
 
@@ -30,7 +30,7 @@ describe('[Jasmine] Validação da página de produto', () => {
 
         cy.get(locators.jasmine_pdp.modalMiniCart)
             .should('be.visible')
-        
+
         cy.get(locators.jasmine_pdp.componenteProdutoIndividual)
             .should('be.visible')
 
@@ -41,7 +41,7 @@ describe('[Jasmine] Validação da página de produto', () => {
     });
 
     it('Removendo produto do carrinho e verificando se ele fica vazio', () => {
-        
+
         cy.AdicionandoProdutoNoCarrinho_Jasmine()
 
         cy.get(locators.jasmine_pdp.removerProdutoMinicart)
@@ -53,16 +53,16 @@ describe('[Jasmine] Validação da página de produto', () => {
     });
 
     it('Validar se o produto possui Descrição', () => {
-        
+
         cy.get(locators.jasmine_pdp.modalDescriçãoProduto)
-            .should('be.visible')   
+            .should('be.visible')
 
         cy.get(locators.jasmine_pdp.modalDescriçãoProduto)
             .should('be.visible')
     });
 
     it('Validando o slide da vitrine de produtos', () => {
-        
+
         cy.scrollTo('bottom')
 
         cy.get(locators.jasmine_pdp.slideVitrine)
@@ -70,11 +70,10 @@ describe('[Jasmine] Validação da página de produto', () => {
             .last()
             .click()
             .wait(1000)
-            .dblclick()
     });
 
     it('Aumentando a quantidade de produtos', () => {
-        
+
         cy.wait(1500)
 
         cy.get(locators.jasmine_pdp.aumentarQuantidadeDeProduto)
